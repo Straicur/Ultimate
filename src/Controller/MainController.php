@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
-use App\Service\RequestServiceInterface;
+use App\Model\MainModel;
 use App\Tool\ResponseTool;
+use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,8 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     /**
-     * @param Request $request
-     * @param RequestServiceInterface $requestServiceInterface
      * @return Response
      */
     #[Route('/api/main', name: 'app_main', methods: ["GET"])]
@@ -26,16 +24,12 @@ class MainController extends AbstractController
             new OA\Response(
                 response: 200,
                 description: "Success",
+                content: new Model(type: MainModel::class)
             )
         ]
     )]
-    public function main(
-        Request                 $request,
-        RequestServiceInterface $requestServiceInterface,
-    ): Response
+    public function main(): Response
     {
-        print_r("Hello");
-
-        return ResponseTool::getResponse();
+        return ResponseTool::getResponse(new MainModel("ITS WORKING !!!"));
     }
 }

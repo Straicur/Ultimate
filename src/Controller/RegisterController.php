@@ -70,10 +70,10 @@ class RegisterController extends AbstractController
         if ($registerQuery instanceof RegisterQuery) {
 
             $userExists = $userRepository->findOneBy([
-                "email"=>$registerQuery->getEmail()
+                "email" => $registerQuery->getEmail()
             ]);
 
-            if($userExists != null){
+            if ($userExists != null) {
                 throw new DataNotFoundException(["register.put.invalid.email"]);
             }
 
