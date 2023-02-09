@@ -43,7 +43,7 @@ class RegisterController extends AbstractController
      */
     #[Route('/api/register', name: 'app_register', methods: ["PUT"])]
     #[OA\Put(
-        description: "Endpoint is getting details of audiobook",
+        description: "Endpoint is used to register new users",
         requestBody: new OA\RequestBody(
             required: true,
             content: new OA\JsonContent(
