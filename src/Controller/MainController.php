@@ -6,6 +6,7 @@ use App\Model\MainModel;
 use App\Tool\ResponseTool;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,8 +29,9 @@ class MainController extends AbstractController
             )
         ]
     )]
-    public function main(): Response
+    public function main(LoggerInterface $usersLogger,): Response
     {
+        $usersLogger->info("DSADSA");
         return ResponseTool::getResponse(new MainModel("ITS WORKING !!!"));
     }
 }
